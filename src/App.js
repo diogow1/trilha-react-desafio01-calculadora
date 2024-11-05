@@ -42,8 +42,36 @@ const App = () => {
         setCurrentNumber('0')
         setOperation('-')
     }else {
-      const sum = Number(firstNumber) - Number(currentNumber);
-      setCurrentNumber(String(sum))
+      const minus = Number(firstNumber) - Number(currentNumber);
+      setCurrentNumber(String(minus))
+      setOperation('')
+    }
+
+  }
+
+  const handleMultNumbers = () => {
+
+    if(firstNumber === '0'){
+        setFirstNumber(String(currentNumber));
+        setCurrentNumber('0')
+        setOperation('*')
+    }else {
+      const mult = Number(firstNumber) * Number(currentNumber);
+      setCurrentNumber(String(mult))
+      setOperation('')
+    }
+
+  }
+
+  const handleDivNumbers = () => {
+
+    if(firstNumber === '0'){
+        setFirstNumber(String(currentNumber));
+        setCurrentNumber('0')
+        setOperation('/')
+    }else {
+      const div = Number(firstNumber) / Number(currentNumber);
+      setCurrentNumber(String(div))
       setOperation('')
     }
 
@@ -59,11 +87,16 @@ const App = () => {
           case '-':
             handleMinusNumbers();
             break;
+          case '*':
+            handleMultNumbers();
+            break;
+          case '/':
+            handleDivNumbers();
+            break;
           default: 
             break;
         }
     }
-
   }
 
   return (
@@ -71,10 +104,10 @@ const App = () => {
       <Content>
         <Input value={currentNumber}/>
         <Row>
-          <Button label="x"/>
-          <Button label="/"/>
-          <Button label="c" onClick={handleOnClear}/>
-          <Button label="."/>
+          <Button label="☻"/>
+          <Button label="C" onClick={handleOnClear}/>
+          <Button label="/" onClick={handleDivNumbers}/>
+          <Button label="*" onClick={handleMultNumbers}/>
         </Row>
         <Row>
           <Button label="7" onClick={() => handleAddNumber('7')}/>
